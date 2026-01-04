@@ -102,20 +102,21 @@ public class CandidateScreeningTest {
                     "\n" +
                     "        int minAge = scanner.nextInt();\n" +
                     "        scanner.close();\n" +
-                    "\n" +);
+                    "\n");
 
-        programmingQuestionIds = screeningDetailsResponse.jsonPath().getList("find { it.programming != null }.programming._id");
-        List<String> audienceQuestionIds = new ArrayList<>();
-        List<String> audienceAnswers = new ArrayList<>();
-        {
-            audienceAnswers.add("C:\\Roche_Automation\\jmeter_Scripts\\questions\\AudioAnswer.mp3");
-        }
-        audienceQuestionIds = screeningDetailsResponse.jsonPath().getList("find { it.audio != null }.audio._id");
-        System.out.println("Audio Questions ID: " + audienceQuestionIds);
-        for (int i = 0; i < audienceQuestionIds.size(); i++) {
-            AudioService audioService = new AudioService();
-            Response audioAnswerResponse = audioService.submitAudioAnswer(audienceQuestionIds.get(i), experience);
-            Assert.assertEquals(audioAnswerResponse.statusCode(), 200, "Expected HTTP 200 when submitting Audio answer");
+            programmingQuestionIds = screeningDetailsResponse.jsonPath().getList("find { it.programming != null }.programming._id");
+            List<String> audienceQuestionIds = new ArrayList<>();
+            List<String> audienceAnswers = new ArrayList<>();
+            {
+                audienceAnswers.add("C:\\Roche_Automation\\jmeter_Scripts\\questions\\AudioAnswer.mp3");
+            }
+            audienceQuestionIds = screeningDetailsResponse.jsonPath().getList("find { it.audio != null }.audio._id");
+            System.out.println("Audio Questions ID: " + audienceQuestionIds);
+            for (int i = 0; i < audienceQuestionIds.size(); i++) {
+                AudioService audioService = new AudioService();
+                Response audioAnswerResponse = audioService.submitAudioAnswer(audienceQuestionIds.get(i), experience);
+                Assert.assertEquals(audioAnswerResponse.statusCode(), 200, "Expected HTTP 200 when submitting Audio answer");
+            }
         }
     }
 }
