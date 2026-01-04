@@ -141,11 +141,11 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 465
-          username: harshhpatel07@gmail.com
+          username: suchetaghogare2@gmail.com
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: 'Regression Test Execution Report - ${{ github.event.inputs.test_xml_file }} (Env: ${{ github.event.inputs.environment }})'
-          to: harshvegada1997@gmail.com,write2technocredits@gmail.com
-          from: harshhpatel07@gmail.com
+          to: harshhpatel07@gmail.com
+          from: suchetaghogare2@gmail.com
           html_body: true
           body: ${{ env.EMAIL_CONTENT }}
           attachments: /tmp/email_body.html
