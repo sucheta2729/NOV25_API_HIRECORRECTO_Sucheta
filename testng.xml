@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="/Users/sucheta/Documents/TechnoCredits/API Projects/Novv25_OrangeHRM_RestAssured/src/test/java/testScripts/CandidateScreeningTest.java"><classes><class name="testScripts.CandidateScreeningTest"><methods><include name="candidateMCQScreeningTest"/><include name="submitVideoAnswer"/><include name="submitAudioAnswer"/><include name="submitProgrammingAnswer"/></methods></class></classes></test></suite>
