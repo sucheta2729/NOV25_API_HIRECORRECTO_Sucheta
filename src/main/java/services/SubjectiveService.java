@@ -3,6 +3,7 @@ package services;
 import base.APIControlActions;
 import base.ScreeningControl;
 import entity.SubjectivePojo.SubjectiveRootPayLoad;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import utility.JavaToJSON;
 
@@ -12,6 +13,7 @@ import java.util.Map;
 
 public class SubjectiveService extends APIControlActions {
 
+    @Step("Submit subjective answer for question ID: {questionId} with experience: {experience}")
     public Response submitSubjectiveAnswer(String questionId, String experience, String candidateAnswer) {
         SubjectiveRootPayLoad payload = SubjectiveRootPayLoad.builder()
                 .questionId(questionId)

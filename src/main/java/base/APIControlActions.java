@@ -1,5 +1,6 @@
 package base;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import utility.PropertyUtil_1;
@@ -16,6 +17,7 @@ public class APIControlActions {
     private void buildRequestSpecBuilder() {
         if (requestSpecBuilder == null) {
             requestSpecBuilder = new RequestSpecBuilder();
+            requestSpecBuilder.addFilter(new AllureRestAssured());
         }
 //        requestSpecBuilder.log(LogDetail.ALL);
     }

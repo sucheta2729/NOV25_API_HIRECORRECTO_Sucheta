@@ -3,6 +3,7 @@ package services;
 import base.APIControlActions;
 import base.ScreeningControl;
 import entity.ProgrammingPojo.ProgrammingRootPayLoad;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import utility.JavaToJSON;
 
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProgrammingService extends APIControlActions {
+    @Step("Submit programming answer for question ID: {questionId} with experience: {experience}")
     public Response submitProgrammingAnswer(String questionId, String experience, String candidateAnswer) {
         ProgrammingRootPayLoad programmingRootPayLoad = ProgrammingRootPayLoad.builder()
                 .questionId(questionId)

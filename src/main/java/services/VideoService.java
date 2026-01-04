@@ -4,6 +4,7 @@ import base.APIControlActions;
 import base.ScreeningControl;
 import entity.VideoPojo.VideoAnswerPayLoad;
 import entity.VideoPojo.VideoFileGeneratorPayLoad;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import utility.JavaToJSON;
 
@@ -13,6 +14,7 @@ import java.util.Map;
 
 public class VideoService extends APIControlActions {
 
+    @Step("Submit video answer for question ID: {questionId} with experience: {experience}")
     public Response submitVideoAnswer(String questionId, String experience) {
         Response videoFileResponse = generateVideoURL();
         String videoFileId = videoFileResponse.jsonPath().getString("fileId");
@@ -31,6 +33,7 @@ public class VideoService extends APIControlActions {
         return videoAnswerResponse;
     }
 
+    @Step("Generate video file upload URL")
     private Response generateVideoURL(){
         VideoFileGeneratorPayLoad videoFileGeneratorPayLoad = VideoFileGeneratorPayLoad.builder()
                 .originalFilename("")
@@ -49,6 +52,7 @@ public class VideoService extends APIControlActions {
         return executePostAPI("/api/candidateScreening/generate-upload-url");
     }
 
+    @Step("Build video answer payload for question ID: {questionId}")
     private String getVideoAnswerPayLoad(String questionId, String jobRoleId, String experience, String jobApplicationId, String answerVideoFileId) {
         VideoAnswerPayLoad videoAnswerPayLoad = VideoAnswerPayLoad.builder()
                 .questionId(questionId)

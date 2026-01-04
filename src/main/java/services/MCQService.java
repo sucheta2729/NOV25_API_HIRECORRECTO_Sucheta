@@ -3,6 +3,7 @@ package services;
 import base.APIControlActions;
 import base.ScreeningControl;
 import entity.MCQPojo.MCQRootPayLoad;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import utility.JavaToJSON;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MCQService extends APIControlActions {
+    @Step("Submit MCQ answer for question ID: {questionId} with experience: {experience}")
     public Response submitMCQAnswer(String questionId, String experience, String candidateAnswer) {
         MCQRootPayLoad.QuestionCopies questionCopies = MCQRootPayLoad.QuestionCopies.builder()
                 .count(0)

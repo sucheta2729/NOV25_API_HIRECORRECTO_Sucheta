@@ -1,6 +1,7 @@
 package testScripts;
 
 import base.ScreeningControl;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,13 +14,25 @@ public class CandidateScreeningTest {
 
     public static String experience = "4.0";
 
+    @Step("Execute candidate MCQ screening test")
     @Test
     public void candidateMCQScreeningTest() {
+        initializeScreeningData();
+        Response screeningDetailsResponse = getScreeningDetails();
+        submitMCQAnswers(screeningDetailsResponse);
+        submitSubjectiveAnswers(screeningDetailsResponse);
+        submitProgrammingAnswers(screeningDetailsResponse);
+        submitAudioAnswers(screeningDetailsResponse);
+    }
+    @Step("Initialize screening control with candidate data")
+    private void initializeScreeningData() {
         ScreeningControl.candidateScreeningId = "694770d452e582fefe7e1ebc";
         ScreeningControl.jobRoleId = "68943b744df518afa9442034";
         ScreeningControl.jobApplicationId = "69476ed0c41f0cc9ce8110f0";
+    }
 
-
+    @Step("Retrieve screening details and question IDs")
+    private Response getScreeningDetails() {
         ScreeningDetails screeningDetails = new ScreeningDetails();
         Response screeningDetailsResponse = screeningDetails.getScreeningDetails("692d3aeb3d9838750c2d650a");
         System.out.println(screeningDetailsResponse.asPrettyString());
@@ -29,7 +42,11 @@ public class CandidateScreeningTest {
         String videoQuestionID = screeningDetailsResponse.jsonPath().getString("find { it.video != null }.video[0]._id");
         System.out.println("Video Question ID: " + videoQuestionID);
 
+        return screeningDetailsResponse;
+    }
 
+    @Step("Submit all MCQ answers for candidate")
+    private void submitMCQAnswers(Response screeningDetailsResponse) {
         List<String> questionIds = new ArrayList<>();
         List<String> mcqanswers = new ArrayList<>();
         {
@@ -43,7 +60,10 @@ public class CandidateScreeningTest {
             Response submitMCQAnswerResponse = mcqService.submitMCQAnswer(questionIds.get(i), experience, mcqanswers.get(i));
             Assert.assertEquals(submitMCQAnswerResponse.statusCode(), 200, "Expected HTTP 200 when submitting MCQ answer");
         }
+    }
 
+    @Step("Submit all subjective answers for candidate")
+    private void submitSubjectiveAnswers(Response screeningDetailsResponse) {
         List<String> subjectiveQuestionIds = new ArrayList<>();
         List<String> subjectiveAnswers = new ArrayList<>();
         {
@@ -56,7 +76,10 @@ public class CandidateScreeningTest {
             Response subjectiveAsnwerResponse = subjectiveService.submitSubjectiveAnswer(subjectiveQuestionIds.get(i), experience, subjectiveAnswers.get(i));
             Assert.assertEquals(subjectiveAsnwerResponse.statusCode(), 200, "Expected HTTP 200 when submitting Subjective answer");
         }
+    }
 
+    @Step("Submit all programming answers for candidate")
+    private void submitProgrammingAnswers(Response screeningDetailsResponse) {
         List<String> programmingQuestionIds = new ArrayList<>();
         List<String> programmingAnswers = new ArrayList<>();
         {
@@ -103,28 +126,30 @@ public class CandidateScreeningTest {
                     "        int minAge = scanner.nextInt();\n" +
                     "        scanner.close();\n" +
                     "\n");
+        }
 
-            programmingQuestionIds = screeningDetailsResponse.jsonPath().getList("find { it.programming != null }.programming._id");
-            List<String> audienceQuestionIds = new ArrayList<>();
-            List<String> audienceAnswers = new ArrayList<>();
-            {
-                audienceAnswers.add("C:\\Roche_Automation\\jmeter_Scripts\\questions\\AudioAnswer.mp3");
-            }
-            audienceQuestionIds = screeningDetailsResponse.jsonPath().getList("find { it.audio != null }.audio._id");
-            System.out.println("Audio Questions ID: " + audienceQuestionIds);
-            for (int i = 0; i < audienceQuestionIds.size(); i++) {
-                AudioService audioService = new AudioService();
-                Response audioAnswerResponse = audioService.submitAudioAnswer(audienceQuestionIds.get(i), experience);
-                Assert.assertEquals(audioAnswerResponse.statusCode(), 200, "Expected HTTP 200 when submitting Audio answer");
-            }
+        programmingQuestionIds = screeningDetailsResponse.jsonPath().getList("find { it.programming != null }.programming._id");
+        System.out.println("Programming Questions ID: " + programmingQuestionIds);
+        for (int i = 0; i < programmingQuestionIds.size(); i++) {
+            ProgrammingService programmingService = new ProgrammingService();
+            Response programmingAnswerResponse = programmingService.submitProgrammingAnswer(programmingQuestionIds.get(i), experience, programmingAnswers.get(i));
+            Assert.assertEquals(programmingAnswerResponse.statusCode(), 200, "Expected HTTP 200 when submitting Programming answer");
         }
     }
-}
 
-/*
+    @Step("Submit all audio answers for candidate")
+    private void submitAudioAnswers(Response screeningDetailsResponse) {
+        List<String> audienceQuestionIds = new ArrayList<>();
+        audienceQuestionIds = screeningDetailsResponse.jsonPath().getList("find { it.audio != null }.audio._id");
+        System.out.println("Audio Questions ID: " + audienceQuestionIds);
+        for (int i = 0; i < audienceQuestionIds.size(); i++) {
+            AudioService audioService = new AudioService();
+            Response audioAnswerResponse = audioService.submitAudioAnswer(audienceQuestionIds.get(i), experience);
+            Assert.assertEquals(audioAnswerResponse.statusCode(), 200, "Expected HTTP 200 when submitting Audio answer");
+        }
+    }
 
-
-
+    @Step("Submit video answer test")
     @Test
     public void submitVideoAnswer() {
         VideoService videoService = new VideoService();
@@ -133,6 +158,7 @@ public class CandidateScreeningTest {
         Assert.assertEquals(videoAnswerResponse.statusCode(), 200, "Expected HTTP 200 when submitting Video answer");
     }
 
+    @Step("Submit audio answer test")
     @Test
     public void submitAudioAnswer() {
         AudioService audioService = new AudioService();
@@ -141,6 +167,7 @@ public class CandidateScreeningTest {
         Assert.assertEquals(audioAnswerResponse.statusCode(), 200, "Expected HTTP 200 when submitting Video answer");
     }
 
+    @Step("Submit programming answer test")
     @Test
     public void submitProgrammingAnswer() {
         ProgrammingService programmingService = new ProgrammingService();
@@ -151,4 +178,3 @@ public class CandidateScreeningTest {
         Assert.assertEquals(programmingAnswerResponse.statusCode(), 200, "Expected HTTP 200 when submitting Programming answer");
     }
 }
-*/

@@ -4,6 +4,7 @@ import base.APIControlActions;
 import base.ScreeningControl;
 import entity.AudioPojo.AudioAnswerPayLoad;
 import entity.AudioPojo.AudioFileGeneratorPayLoad;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import utility.JavaToJSON;
 
@@ -16,6 +17,7 @@ import static base.ScreeningControl.jobRoleId;
 
 public class AudioService extends APIControlActions {
 
+    @Step("Submit audio answer for question ID: {questionId} with experience: {experience}")
     public Response submitAudioAnswer(String questionId, String experience) {
         Response audioFileResponse = generateAudioURL();
         audioFileResponse.then().log().all();
@@ -36,6 +38,7 @@ public class AudioService extends APIControlActions {
         return  audioAnswerResponse;
     }
 
+    @Step("Generate audio file upload URL")
     private Response generateAudioURL() {
         AudioFileGeneratorPayLoad payload = AudioFileGeneratorPayLoad.builder()
                 .originalFilename("recordedAudio.webm")
@@ -54,6 +57,7 @@ public class AudioService extends APIControlActions {
         return executePostAPI("/api/candidateScreening/generate-upload-url");
     }
 
+    @Step("Build audio answer payload for question ID: {questionId}")
     private String getAudioServicePayLoad(String questionId, String experience, String audioFileId) {
         AudioAnswerPayLoad audioAnswerPayLoad = AudioAnswerPayLoad.builder()
                 .questionId(questionId)
