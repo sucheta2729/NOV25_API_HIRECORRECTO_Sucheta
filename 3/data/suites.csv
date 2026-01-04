@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","8145","candidateMCQScreeningTest","All Test Suite","Sun Jan 04 20:01:24 UTC 2026","passed","Sun Jan 04 20:01:32 UTC 2026","testScripts.CandidateScreeningTest","Candidate Screening Test Suite","testScripts.CandidateScreeningTest","candidateMCQScreeningTest"

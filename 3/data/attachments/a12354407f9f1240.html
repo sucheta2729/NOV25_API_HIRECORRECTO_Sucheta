@@ -1,0 +1,181 @@
+<div>PATCH to https://staging.api.screening.hirecorrecto.com/api/candidateScreening/update-candidate-result/694770d452e582fefe7e1ebc</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;questionId&quot;: &quot;692d3aee3d9838750c2d6524&quot;,
+    &quot;type&quot;: &quot;programming&quot;,
+    &quot;skill&quot;: &quot;api&quot;,
+    &quot;jobRoleId&quot;: &quot;68943b744df518afa9442034&quot;,
+    &quot;experience&quot;: &quot;4.0&quot;,
+    &quot;jobApplicationId&quot;: &quot;69476ed0c41f0cc9ce8110f0&quot;,
+    &quot;timeSpent&quot;: 120,
+    &quot;fullScreenExitCount&quot;: 0,
+    &quot;tabSwitchCount&quot;: 0,
+    &quot;candidateAnswer&quot;: &quot;import java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.List;\nimport java.util.Scanner;\nimport java.util.Comparator;\nimport java.util.stream.Collectors;\n\nclass Patient {\n    int id;\n    String name;\n    int age;\n\n    public Patient(int id, String name, int age) {\n        this.id = id;\n        this.name = name;\n        this.age = age;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public int getAge() {\n        return age;\n    }\n}\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n\n        int N = scanner.nextInt();\n        List&lt;Patient&gt; patients = new ArrayList&lt;&gt;();\n        for (int i = 0; i &lt; N; i++) {\n            int id = scanner.nextInt();\n            String name = scanner.next();\n            int age = scanner.nextInt();\n            patients.add(new Patient(id, name, age));\n        }\n\n        int minAge = scanner.nextInt();\n        scanner.close();\n\n&quot;,
+    &quot;typingAnalysis&quot;: {
+        &quot;totalDuration&quot;: 120000,
+        &quot;totalCharacters&quot;: 250,
+        &quot;keystrokeCount&quot;: 300,
+        &quot;pasteEventCount&quot;: 1,
+        &quot;copyEventCount&quot;: 0,
+        &quot;focusLossCount&quot;: 3,
+        &quot;pasteAnalysis&quot;: {
+            &quot;totalPasteEvents&quot;: 1,
+            &quot;totalPastedCharacters&quot;: 50,
+            &quot;pastePercentage&quot;: 20,
+            &quot;rawPastePercentage&quot;: 20,
+            &quot;largestPaste&quot;: 50,
+            &quot;hasCodePatterns&quot;: true,
+            &quot;hasFormatting&quot;: true,
+            &quot;riskLevel&quot;: &quot;medium&quot;
+        },
+        &quot;typingAnalysis&quot;: {
+            &quot;averageTypingSpeed&quot;: 2.5,
+            &quot;typingBursts&quot;: 5,
+            &quot;totalKeystrokes&quot;: 300,
+            &quot;backspaceCount&quot;: 10,
+            &quot;riskLevel&quot;: &quot;medium&quot;
+        },
+        &quot;focusAnalysis&quot;: {
+            &quot;totalFocusEvents&quot;: 6,
+            &quot;focusLossCount&quot;: 3,
+            &quot;focusChangeFrequency&quot;: 0,
+            &quot;riskLevel&quot;: &quot;medium&quot;
+        },
+        &quot;qualityAnalysis&quot;: {
+            &quot;wordCount&quot;: 200,
+            &quot;averageWordsPerMinute&quot;: 40.0,
+            &quot;hasProperStructure&quot;: true,
+            &quot;hasVariedVocabulary&quot;: true,
+            &quot;qualityScore&quot;: 80,
+            &quot;riskLevel&quot;: &quot;low&quot;
+        },
+        &quot;globalEventAnalysis&quot;: {
+            &quot;globalCopyCount&quot;: 0,
+            &quot;questionCopyCount&quot;: 0,
+            &quot;externalInteractionCount&quot;: 2,
+            &quot;hasQuestionCopying&quot;: false,
+            &quot;hasHighRiskCopying&quot;: false,
+            &quot;copySourceDistribution&quot;: {
+                
+            },
+            &quot;suspiciousPatternCount&quot;: 0,
+            &quot;riskLevel&quot;: &quot;low&quot;
+        },
+        &quot;copyPasteCorrelations&quot;: {
+            &quot;totalCorrelations&quot;: 0,
+            &quot;questionPasteCount&quot;: 0,
+            &quot;averageTimeBetween&quot;: 0,
+            &quot;riskLevel&quot;: &quot;low&quot;
+        },
+        &quot;riskScore&quot;: 25,
+        &quot;sessionId&quot;: &quot;typing_1766289753076_4vsscmczy&quot;,
+        &quot;analysisVersion&quot;: &quot;2.0-enhanced&quot;,
+        &quot;timestamp&quot;: &quot;2024-06-20T12:34:56Z&quot;,
+        &quot;privacyCompliant&quot;: true
+    },
+    &quot;hasTypingAnalysis&quot;: true,
+    &quot;screeningTestId&quot;: &quot;692d3aeb3d9838750c2d650a&quot;,
+    &quot;programmingLanguageId&quot;: 62,
+    &quot;editorEvents&quot;: [
+        
+    ],
+    &quot;retakes&quot;: 0
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: application/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X PATCH &#39;https://staging.api.screening.hirecorrecto.com/api/candidateScreening/update-candidate-result/694770d452e582fefe7e1ebc&#39; -H &#39;Accept: application/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;questionId&quot;: &quot;692d3aee3d9838750c2d6524&quot;,
+    &quot;type&quot;: &quot;programming&quot;,
+    &quot;skill&quot;: &quot;api&quot;,
+    &quot;jobRoleId&quot;: &quot;68943b744df518afa9442034&quot;,
+    &quot;experience&quot;: &quot;4.0&quot;,
+    &quot;jobApplicationId&quot;: &quot;69476ed0c41f0cc9ce8110f0&quot;,
+    &quot;timeSpent&quot;: 120,
+    &quot;fullScreenExitCount&quot;: 0,
+    &quot;tabSwitchCount&quot;: 0,
+    &quot;candidateAnswer&quot;: &quot;import java.util.ArrayList;\nimport java.util.Collections;\nimport java.util.List;\nimport java.util.Scanner;\nimport java.util.Comparator;\nimport java.util.stream.Collectors;\n\nclass Patient {\n    int id;\n    String name;\n    int age;\n\n    public Patient(int id, String name, int age) {\n        this.id = id;\n        this.name = name;\n        this.age = age;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public int getAge() {\n        return age;\n    }\n}\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner scanner = new Scanner(System.in);\n\n        int N = scanner.nextInt();\n        List&lt;Patient&gt; patients = new ArrayList&lt;&gt;();\n        for (int i = 0; i &lt; N; i++) {\n            int id = scanner.nextInt();\n            String name = scanner.next();\n            int age = scanner.nextInt();\n            patients.add(new Patient(id, name, age));\n        }\n\n        int minAge = scanner.nextInt();\n        scanner.close();\n\n&quot;,
+    &quot;typingAnalysis&quot;: {
+        &quot;totalDuration&quot;: 120000,
+        &quot;totalCharacters&quot;: 250,
+        &quot;keystrokeCount&quot;: 300,
+        &quot;pasteEventCount&quot;: 1,
+        &quot;copyEventCount&quot;: 0,
+        &quot;focusLossCount&quot;: 3,
+        &quot;pasteAnalysis&quot;: {
+            &quot;totalPasteEvents&quot;: 1,
+            &quot;totalPastedCharacters&quot;: 50,
+            &quot;pastePercentage&quot;: 20,
+            &quot;rawPastePercentage&quot;: 20,
+            &quot;largestPaste&quot;: 50,
+            &quot;hasCodePatterns&quot;: true,
+            &quot;hasFormatting&quot;: true,
+            &quot;riskLevel&quot;: &quot;medium&quot;
+        },
+        &quot;typingAnalysis&quot;: {
+            &quot;averageTypingSpeed&quot;: 2.5,
+            &quot;typingBursts&quot;: 5,
+            &quot;totalKeystrokes&quot;: 300,
+            &quot;backspaceCount&quot;: 10,
+            &quot;riskLevel&quot;: &quot;medium&quot;
+        },
+        &quot;focusAnalysis&quot;: {
+            &quot;totalFocusEvents&quot;: 6,
+            &quot;focusLossCount&quot;: 3,
+            &quot;focusChangeFrequency&quot;: 0,
+            &quot;riskLevel&quot;: &quot;medium&quot;
+        },
+        &quot;qualityAnalysis&quot;: {
+            &quot;wordCount&quot;: 200,
+            &quot;averageWordsPerMinute&quot;: 40.0,
+            &quot;hasProperStructure&quot;: true,
+            &quot;hasVariedVocabulary&quot;: true,
+            &quot;qualityScore&quot;: 80,
+            &quot;riskLevel&quot;: &quot;low&quot;
+        },
+        &quot;globalEventAnalysis&quot;: {
+            &quot;globalCopyCount&quot;: 0,
+            &quot;questionCopyCount&quot;: 0,
+            &quot;externalInteractionCount&quot;: 2,
+            &quot;hasQuestionCopying&quot;: false,
+            &quot;hasHighRiskCopying&quot;: false,
+            &quot;copySourceDistribution&quot;: {
+                
+            },
+            &quot;suspiciousPatternCount&quot;: 0,
+            &quot;riskLevel&quot;: &quot;low&quot;
+        },
+        &quot;copyPasteCorrelations&quot;: {
+            &quot;totalCorrelations&quot;: 0,
+            &quot;questionPasteCount&quot;: 0,
+            &quot;averageTimeBetween&quot;: 0,
+            &quot;riskLevel&quot;: &quot;low&quot;
+        },
+        &quot;riskScore&quot;: 25,
+        &quot;sessionId&quot;: &quot;typing_1766289753076_4vsscmczy&quot;,
+        &quot;analysisVersion&quot;: &quot;2.0-enhanced&quot;,
+        &quot;timestamp&quot;: &quot;2024-06-20T12:34:56Z&quot;,
+        &quot;privacyCompliant&quot;: true
+    },
+    &quot;hasTypingAnalysis&quot;: true,
+    &quot;screeningTestId&quot;: &quot;692d3aeb3d9838750c2d650a&quot;,
+    &quot;programmingLanguageId&quot;: 62,
+    &quot;editorEvents&quot;: [
+        
+    ],
+    &quot;retakes&quot;: 0
+}&#39;
+    </div>
+
